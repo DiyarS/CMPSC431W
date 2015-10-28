@@ -18,31 +18,20 @@ class Migration(migrations.Migration):
                 ('city', models.CharField(max_length=50)),
                 ('state', models.CharField(max_length=30)),
                 ('index', models.CharField(max_length=20)),
-                ('primary', models.IntegerField()),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Auction',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('BID', models.FloatField()),
-                ('reserve_price', models.FloatField()),
-                ('expiration_time', models.DateTimeField(verbose_name=b'expiration_date')),
+                ('primary', models.IntegerField(unique=True)),
             ],
         ),
         migrations.CreateModel(
             name='Belongs_to',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('category', models.CharField(unique=True, max_length=30)),
+                ('category', models.CharField(max_length=30, unique=True, serialize=False, primary_key=True)),
             ],
         ),
         migrations.CreateModel(
             name='Bids',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('BID', models.ForeignKey(related_name='bid', to='online_store.Auction')),
-                ('item_id', models.ForeignKey(to='online_store.Auction')),
+                ('BID', models.FloatField()),
             ],
         ),
         migrations.CreateModel(
@@ -54,18 +43,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Category',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(unique=True, max_length=60)),
+                ('name', models.CharField(max_length=60, unique=True, serialize=False, primary_key=True)),
                 ('report', models.TextField(max_length=1000)),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Companies',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=30)),
-                ('point_of_contact', models.CharField(max_length=50)),
-                ('revenue', models.FloatField()),
             ],
         ),
         migrations.CreateModel(
@@ -88,17 +67,10 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Fixed_Price',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('price', models.FloatField()),
-            ],
-        ),
-        migrations.CreateModel(
             name='Has_address',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('primary', models.ForeignKey(to='online_store.Address')),
+                ('primary', models.ForeignKey(to='online_store.Address', to_field=b'primary')),
             ],
         ),
         migrations.CreateModel(
@@ -109,29 +81,9 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Individual_buyers',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('buyer_id', models.CharField(unique=True, max_length=30)),
-                ('dob', models.DateField(verbose_name=b'date_of_birth')),
-                ('gender', models.CharField(max_length=10)),
-                ('annual_income', models.FloatField()),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Individual_sellers',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('dob', models.DateField(verbose_name=b'date_of_birth')),
-                ('gender', models.CharField(max_length=10)),
-                ('annual_income', models.FloatField()),
-            ],
-        ),
-        migrations.CreateModel(
             name='Items',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('item_id', models.CharField(unique=True, max_length=30)),
+                ('item_id', models.CharField(max_length=30, unique=True, serialize=False, primary_key=True)),
                 ('description', models.CharField(max_length=500)),
                 ('location', models.CharField(max_length=60)),
                 ('rating', models.FloatField()),
@@ -140,35 +92,44 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Registered_users',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('username', models.CharField(unique=True, max_length=30)),
+                ('username', models.CharField(max_length=30, unique=True, serialize=False, primary_key=True)),
                 ('password', models.CharField(max_length=30)),
                 ('phone_number', models.CharField(max_length=30)),
                 ('email', models.EmailField(unique=True, max_length=30)),
             ],
         ),
         migrations.CreateModel(
-            name='Sellers',
+            name='Auction',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('seller_id', models.CharField(unique=True, max_length=30)),
-                ('username', models.ForeignKey(to='online_store.Registered_users')),
+                ('item_id', models.ForeignKey(primary_key=True, serialize=False, to='online_store.Items', unique=True)),
+                ('BID', models.FloatField()),
+                ('reserve_price', models.FloatField()),
+                ('expiration_time', models.DateTimeField()),
             ],
         ),
-        migrations.AddField(
-            model_name='individual_sellers',
-            name='seller_id',
-            field=models.ForeignKey(related_name='individual_seller_id', to='online_store.Sellers'),
+        migrations.CreateModel(
+            name='Fixed_Price',
+            fields=[
+                ('item_id', models.ForeignKey(primary_key=True, serialize=False, to='online_store.Items', unique=True)),
+                ('price', models.FloatField()),
+            ],
         ),
-        migrations.AddField(
-            model_name='individual_sellers',
-            name='username',
-            field=models.ForeignKey(to='online_store.Sellers'),
+        migrations.CreateModel(
+            name='Individual_buyers',
+            fields=[
+                ('username', models.ForeignKey(primary_key=True, serialize=False, to='online_store.Registered_users')),
+                ('buyer_id', models.CharField(unique=True, max_length=30)),
+                ('dob', models.DateField(verbose_name=b'date_of_birth')),
+                ('gender', models.CharField(max_length=10)),
+                ('annual_income', models.FloatField()),
+            ],
         ),
-        migrations.AddField(
-            model_name='individual_buyers',
-            name='username',
-            field=models.ForeignKey(to='online_store.Registered_users'),
+        migrations.CreateModel(
+            name='Sellers',
+            fields=[
+                ('username', models.ForeignKey(primary_key=True, serialize=False, to='online_store.Registered_users')),
+                ('seller_id', models.CharField(unique=True, max_length=30)),
+            ],
         ),
         migrations.AddField(
             model_name='has_credit_card',
@@ -179,36 +140,6 @@ class Migration(migrations.Migration):
             model_name='has_address',
             name='username',
             field=models.ForeignKey(to='online_store.Registered_users'),
-        ),
-        migrations.AddField(
-            model_name='fixed_price',
-            name='item_id',
-            field=models.ForeignKey(to='online_store.Items'),
-        ),
-        migrations.AddField(
-            model_name='delivers_to',
-            name='buyer_id',
-            field=models.ForeignKey(to='online_store.Individual_buyers'),
-        ),
-        migrations.AddField(
-            model_name='delivers_to',
-            name='seller_id',
-            field=models.ForeignKey(to='online_store.Sellers'),
-        ),
-        migrations.AddField(
-            model_name='companies',
-            name='seller_id',
-            field=models.ForeignKey(related_name='company_seller_id', to='online_store.Sellers'),
-        ),
-        migrations.AddField(
-            model_name='companies',
-            name='username',
-            field=models.ForeignKey(to='online_store.Sellers'),
-        ),
-        migrations.AddField(
-            model_name='buys',
-            name='item_id',
-            field=models.ForeignKey(to='online_store.Fixed_Price'),
         ),
         migrations.AddField(
             model_name='buys',
@@ -223,7 +154,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='belongs_to',
             name='item_id',
-            field=models.ForeignKey(to='online_store.Items'),
+            field=models.ForeignKey(to='online_store.Items', unique=True),
         ),
         migrations.AddField(
             model_name='belongs_to',
@@ -235,9 +166,48 @@ class Migration(migrations.Migration):
             name='subcategory',
             field=models.ForeignKey(related_name='subcategory', to='online_store.Category'),
         ),
+        migrations.CreateModel(
+            name='Companies',
+            fields=[
+                ('username', models.ForeignKey(primary_key=True, default=b'null', to_field=b'username_id', serialize=False, to='online_store.Sellers')),
+                ('name', models.CharField(max_length=30)),
+                ('point_of_contact', models.CharField(max_length=50)),
+                ('revenue', models.FloatField()),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Individual_sellers',
+            fields=[
+                ('username', models.ForeignKey(primary_key=True, default=b'null', to_field=b'username_id', serialize=False, to='online_store.Sellers')),
+                ('dob', models.DateField(verbose_name=b'date_of_birth')),
+                ('gender', models.CharField(max_length=10)),
+                ('annual_income', models.FloatField()),
+                ('seller_id', models.ForeignKey(related_name='individual_seller_id', to='online_store.Sellers', to_field=b'seller_id')),
+            ],
+        ),
         migrations.AddField(
-            model_name='auction',
+            model_name='delivers_to',
+            name='buyer_id',
+            field=models.ForeignKey(to='online_store.Individual_buyers', default=b'null', to_field=b'buyer_id'),
+        ),
+        migrations.AddField(
+            model_name='delivers_to',
+            name='seller_id',
+            field=models.ForeignKey(to='online_store.Sellers', default=b'null', to_field=b'seller_id'),
+        ),
+        migrations.AddField(
+            model_name='buys',
             name='item_id',
-            field=models.ForeignKey(to='online_store.Items'),
+            field=models.ForeignKey(to='online_store.Fixed_Price'),
+        ),
+        migrations.AddField(
+            model_name='bids',
+            name='item_id',
+            field=models.ForeignKey(to='online_store.Auction'),
+        ),
+        migrations.AddField(
+            model_name='companies',
+            name='seller_id',
+            field=models.ForeignKey(related_name='seller_id_id', default=b'-1', to_field=b'seller_id', to='online_store.Sellers'),
         ),
     ]
