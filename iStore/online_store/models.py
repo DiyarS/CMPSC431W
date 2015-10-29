@@ -14,8 +14,6 @@ class Items(models.Model):
 	location = models.CharField(max_length=60)
 	rating = models.FloatField()
 
-
-
 class  Category(models.Model):
 	class Meta:
 		verbose_name_plural = "Categories"
