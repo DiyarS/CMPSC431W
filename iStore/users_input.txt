@@ -1,0 +1,15 @@
+{'username': 'user0', 'phone_number': '8147777777', 'review': '', 'password': '12345', 'email': 'user0@gmail.com'}
+{'username': 'user1', 'phone_number': '8147777777', 'review': '', 'password': '12345', 'email': 'user1@gmail.com'}
+{'username': 'user2', 'phone_number': '8147777777', 'review': '', 'password': '12345', 'email': 'user2@gmail.com'}
+{'username': 'user3', 'phone_number': '8147777777', 'review': '', 'password': '12345', 'email': 'user3@gmail.com'}
+{'username': 'user4', 'phone_number': '8147777777', 'review': '', 'password': '12345', 'email': 'user4@gmail.com'}
+{'username': 'user5', 'phone_number': '8147777777', 'review': '', 'password': '12345', 'email': 'user5@gmail.com'}
+{'username': 'user6', 'phone_number': '8147777777', 'review': '', 'password': '12345', 'email': 'user6@gmail.com'}
+{'username': 'user7', 'phone_number': '8147777777', 'review': '', 'password': '12345', 'email': 'user7@gmail.com'}
+{'username': 'user8', 'phone_number': '8147777777', 'review': '', 'password': '12345', 'email': 'user8@gmail.com'}
+{'username': 'user9', 'phone_number': '8147777777', 'review': '', 'password': '12345', 'email': 'user9@gmail.com'}
+{'username': 'user10', 'phone_number': '8147777777', 'review': '', 'password': '12345', 'email': 'user10@gmail.com'}
+{'username': 'user11', 'phone_number': '8147777777', 'review': '', 'password': '12345', 'email': 'user11@gmail.com'}
+{'username': 'user12', 'phone_number': '8147777777', 'review': '', 'password': '12345', 'email': 'user12@gmail.com'}
+{'username': 'user13', 'phone_number': '8147777777', 'review': '', 'password': '12345', 'email': 'user13@gmail.com'}
+{'username': 'user14', 'phone_number': '8147777777', 'review': '', 'password': '12345', 'email': 'user14@gmail.com'}
