@@ -55,7 +55,7 @@ ROOT_URLCONF = 'iStore.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['/Users/DiyarSailaubekov/Documents/CMPSC431W/iStore/online_store/templates/online_store'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,6 +67,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'iStore.wsgi.application'
 

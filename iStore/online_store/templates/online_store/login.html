@@ -1,7 +1,7 @@
-
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="https://getfirebug.com/firebug-lite-debug.js"></script>
 <title>{% block title %} {% endblock %}</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,20 +30,11 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar"> 
 			<ul class="nav navbar-nav">
-				
 				<li><a href="http://52.0.125.193/customers/">Existing Customers</a></li>
 				<li><a href="http://52.0.125.193/new_customer/">New Customer</a></li>
 			</ul>
 
 		</div>
-
-		<form action="http://localhost:8000/online_store/register">
-    <input type="submit" value="Register" style="float: right;">
-</form>
-
-<form action="http://localhost:8000/online_store/login">
-    <input type="submit" value="Sign in" style="float: right;">
-</form>
 
 	</div>
 </nav>
@@ -51,38 +42,31 @@
 	
 <div class="container">
 	<div class="jumbotron">
-		{% if latest_items_list %}
-    <ul>
-    {% for item in latest_items_list %}
-        
-    {% endfor %}
+	<h3 align="center">Create account</h3>
 
-    <table style="width:100%">
-  <tr>
-    <td>item_id</td>
-    <td>description</td>		
-    <td>location</td>
-    <td>rating</td>
-  </tr>
-  {% for item in latest_items_list %}
-  <tr>
-    <td>{{ item.item_id}}</td>
-    <td>{{ item.description}}</td>		
-    <td>{{item.location}}</td>
-    <td>{{item.rating}}</td>
-  </tr>
-  {% endfor %}
-</table>
+<form action="auth/" method = "post">
+{% csrf_token %}
+	<label for="username" align="center" >Username</label> <br>
+	<input type="text" name="username" align="center" id = "username"><br><br>
 
+	<label for="password" align="center">Password</label><br>
+	<input type="password" name="password" align="center" id = "password"><br><br>
 
+	<input type = "submit" value = "Log in" />
+	
+</form>
 
-    </ul>
-{% else %}
-    <p>No items are available.</p>
-{% endif %}
-		 
-	</div>
-</div>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,7 +1,7 @@
-
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>{% block title %} {% endblock %}</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,52 +37,45 @@
 
 		</div>
 
-		<form action="http://localhost:8000/online_store/register">
-    <input type="submit" value="Register" style="float: right;">
-</form>
-
-<form action="http://localhost:8000/online_store/login">
-    <input type="submit" value="Sign in" style="float: right;">
-</form>
-
 	</div>
 </nav>
 
 	
 <div class="container">
 	<div class="jumbotron">
-		{% if latest_items_list %}
-    <ul>
-    {% for item in latest_items_list %}
-        
-    {% endfor %}
+	<h3 align="center">Create account</h3>
 
-    <table style="width:100%">
-  <tr>
-    <td>item_id</td>
-    <td>description</td>		
-    <td>location</td>
-    <td>rating</td>
-  </tr>
-  {% for item in latest_items_list %}
-  <tr>
-    <td>{{ item.item_id}}</td>
-    <td>{{ item.description}}</td>		
-    <td>{{item.location}}</td>
-    <td>{{item.rating}}</td>
-  </tr>
-  {% endfor %}
-</table>
+<form action="register_new_user/" method = "post">
+{% csrf_token %}
+	<label for="username" align="center" >Your name</label> <br>
+	<input type="text" name="username" align="center" id = "username"><br><br>
 
+	<label for="email" align="center">Email</label><br>
+	<input type="text" name="email" align="center" id = "email"><br><br>
 
+	
 
-    </ul>
-{% else %}
-    <p>No items are available.</p>
-{% endif %}
-		 
-	</div>
-</div>
+	<label for="password" align="center">Password</label><br>
+	<input type="password" name="password" align="center" id = "password"><br><br>
+
+	
+	<label for="phone_number" align="center">Phone number</label><br>
+	<input type="phone_number" name="phone_number" align="center" id = "phone_number"><br><br>
+
+	<input type = "submit" value = "Create account" />
+	
+</form>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

@@ -59,6 +59,10 @@ class  Registered_users(models.Model):
     	email = models.EmailField(max_length=30, unique=True)
     	review = models.CharField(max_length=200, default='null')
 
+    	def __unicode__(self):
+    		return unicode(self.username)
+
+
 class  Sellers(models.Model):
 	class Meta:
 		verbose_name_plural = "Sellers"
