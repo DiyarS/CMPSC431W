@@ -1,0 +1,22 @@
+{'report': 'Periodic reports', 'name': 'All items'}
+{'report': 'Periodic reports', 'name': 'Books'}
+{'report': 'Periodic reports', 'name': 'Audio books'}
+{'report': 'Periodic reports', 'name': 'Kindle books'}
+{'report': 'Periodic reports', 'name': 'Short reads'}
+{'report': 'Periodic reports', 'name': 'Long reads'}
+{'report': 'Periodic reports', 'name': 'Electronics & Computers'}
+{'report': 'Periodic reports', 'name': 'TVs'}
+{'report': 'Periodic reports', 'name': 'Samsung TVs'}
+{'report': 'Periodic reports', 'name': 'LG TVs'}
+{'report': 'Periodic reports', 'name': 'Computers'}
+{'report': 'Periodic reports', 'name': 'Laptops'}
+{'report': 'Periodic reports', 'name': 'Desktop computers'}
+{'report': 'Periodic reports', 'name': 'Macbooks'}
+{'report': 'Periodic reports', 'name': 'Samsung laptops'}
+{'report': 'Periodic reports', 'name': 'Dell'}
+{'report': 'Periodic reports', 'name': 'Lenovo'}
+{'report': 'Periodic reports', 'name': 'Clothing & Shoes'}
+{'report': 'Periodic reports', 'name': 'Men'}
+{'report': 'Periodic reports', 'name': 'Women'}
+{'report': 'Periodic reports', 'name': 'Clothing'}
+{'report': 'Periodic reports', 'name': 'Shoes'}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="https://getfirebug.com/firebug-lite-debug.js"></script>
+<title>{% block title %} {% endblock %}</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% block head %} {% endblock %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<style type="text/css">
+	body {padding-top:70px;}
+	#myNavbar li a {font-size:25px;}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="border-radius:0px;">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>                        
+			</button>
+
+			<a class="navbar-brand" href="http://localhost:8000/online_store/"><img id="logo" alt="Capital One" src="http://consciouslifenews.com/wp-content/uploads/2013/06/the_milky_way_by_symmetrybox-d5ez8c6.png" style="max-height:30px;max-width:300px;"></a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar"> 
+			<ul class="nav navbar-nav">
+				<li><a href="http://52.0.125.193/customers/">Existing Customers</a></li>
+				<li><a href="http://52.0.125.193/new_customer/">New Customer</a></li>
+			</ul>
+
+		</div>
+
+	</div>
+</nav>
+
+	
+<div class="container">
+	<div class="jumbotron">
+	<h3 align="center">Log in</h3>
+
+{% if form.errors %}
+    <p class="error">Sorry, that's not a valid username or password</p>
+  {% endif %}
+
+<form action="auth/" method = "post">
+{% csrf_token %}
+	<label for="email" align="center" >Username</label> <br>
+	<input type="text" name="email" align="center" id = "email"><br><br>
+
+	<label for="password" align="center">Password</label><br>
+	<input type="password" name="password" align="center" id = "password"><br><br>
+
+	<input type = "submit" value = "Log in" />
+	
+</form>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

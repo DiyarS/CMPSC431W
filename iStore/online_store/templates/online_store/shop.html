@@ -1,0 +1,45 @@
+
+{% block title %}Customers{% endblock %}
+{% block content %}
+
+<div id="container">
+	<h2>List of customers</h2>
+	<div clas="customers">
+		<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>NAME</th>
+					<th>ID</th>
+					<th>STATUS</th>
+					<th>LAST STATUS CHANGE</th>
+				</tr>
+			</thead>
+
+			<tbody>
+			{% for name in names %}
+			<tr class="success">
+				<td><a href={url_for('profilePage', id=name['id'])}>{name['firstName']|e}</td>
+					<td>{name['id']|e}</td>
+					<td>{name['status']|e}</td>
+
+				</tr>
+				{% endfor %}
+				</tbody>
+
+			</table>
+		</div>	
+			
+			<div id = 'update'>
+				
+			</div>
+
+			<br></br>
+			<div id = 'stats'>
+				
+				
+			</div>
+		</div>
+	</div>
+
+	{% endblock %}
