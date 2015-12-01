@@ -7,10 +7,17 @@ urlpatterns = [
 
     url(r'^login/$',  views.login),
     url(r'^login/auth/$',  views.auth_view),    
+<<<<<<< HEAD
     url(r'^logout/$', views.logout),
     url(r'^loggedin/$', views.loggedin),
     url(r'^invalid_login/$', views.invalid_login),    
     url(r'^register/$', views.register),
+=======
+    #url(r'^logout/$', views.logout),
+    url(r'^loggedin/$', views.loggedin),
+    url(r'^invalid_login/$', views.invalid_login),    
+    url(r'^register/$', views.register_user),
+>>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
     url(r'^register/register_new_user/$', views.register_new_user),
     url(r'^register_success/$', 'views.register_success'),
 ]

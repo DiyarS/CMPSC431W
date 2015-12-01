@@ -1,10 +1,15 @@
 import datetime
 from django.utils import timezone
+<<<<<<< HEAD
 from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
 from django import forms
 from django.contrib.auth.models import BaseUserManager, PermissionsMixin
 from django.utils.translation import gettext as _
+=======
+
+from django.db import models
+>>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
 
 # Create your models here
 class Items(models.Model):
@@ -50,6 +55,7 @@ class  Belongs_to(models.Model):
     	item_id = models.ForeignKey(Items) 
     	#subcategory = models.ForeignKey(Category, related_name = 'subcategory')
     	#parent_category = models.ForeignKey(Category, related_name = 'parent_category')
+<<<<<<< HEAD
 
 class UserManager(BaseUserManager):
     
@@ -174,11 +180,32 @@ class AuthenticationForm(forms.Form):
 
     class Meta:
         fields = ['email', 'password']
+=======
+    
+
+
+class  Registered_users(models.Model):
+	class Meta:
+		verbose_name_plural = "Registered_users"
+    	username = models.CharField(max_length=30, unique=True, primary_key=True)
+    	password = models.CharField(max_length=30)
+    	phone_number = models.CharField(max_length=30)
+    	email = models.EmailField(max_length=30, unique=True)
+    	review = models.CharField(max_length=200, default='null')
+
+    	def __unicode__(self):
+    		return unicode(self.username)
+
+>>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
 
 class  Sellers(models.Model):
 	class Meta:
 		verbose_name_plural = "Sellers"
+<<<<<<< HEAD
     	username = models.ForeignKey(User, primary_key=True)
+=======
+    	username = models.ForeignKey(Registered_users, primary_key=True)
+>>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
     	seller_id = models.CharField(max_length=30, unique=True)
 
 
@@ -204,7 +231,11 @@ class  Individual_sellers(models.Model):
 class  Individual_buyers(models.Model):
 	class Meta:
 		verbose_name_plural = "Individual_buyers"
+<<<<<<< HEAD
     	username = models.ForeignKey(User, primary_key=True)
+=======
+    	username = models.ForeignKey(Registered_users, primary_key=True)
+>>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
     	buyer_id = models.CharField(max_length=30, unique=True)
     	dob = models.DateField('date_of_birth')
     	gender = models.CharField(max_length=10)
@@ -231,7 +262,11 @@ class  Delivers_to(models.Model):
 class Has_address(models.Model):
 	class Meta:
 		verbose_name_plural = "Has_addresses"
+<<<<<<< HEAD
 	username = models.ForeignKey(User)
+=======
+	username = models.ForeignKey(Registered_users)
+>>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
 	primary = models.ForeignKey(Address, to_field='primary')
 
 class Credit_card(models.Model):
@@ -246,7 +281,11 @@ class Credit_card(models.Model):
 class Has_credit_card(models.Model):
 	class Meta:
 		verbose_name_plural = "Has_credit_cards"
+<<<<<<< HEAD
 	username = models.ForeignKey(User)
+=======
+	username = models.ForeignKey(Registered_users)
+>>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
 	primary = models.ForeignKey(Credit_card)
 
 
@@ -255,11 +294,19 @@ class Bids(models.Model):
 		verbose_name_plural = "Bids"
 	item_id = models.ForeignKey(Auction)
 	BID = models.FloatField()
+<<<<<<< HEAD
 	username = models.ForeignKey(User)
+=======
+	username = models.ForeignKey(Registered_users)
+>>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
 
 class Buys(models.Model):
 	class Meta:
 		verbose_name_plural = "Buys"
 	item_id = models.ForeignKey(Fixed_Price)
+<<<<<<< HEAD
 	username = models.ForeignKey(User)
+=======
+	username = models.ForeignKey(Registered_users)
+>>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
 

@@ -2,12 +2,21 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import auth
 from django.core.context_processors import csrf
+<<<<<<< HEAD
 from django.contrib.auth import login as django_login, authenticate, logout as django_logout
 
 # Create your views here.
 from models import Items, Category, User, RegistrationForm, AuthenticationForm
 from django.template import RequestContext, loader
 
+=======
+
+# Create your views here.
+from models import Items, Category, Registered_users
+from django.template import RequestContext, loader
+
+
+>>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
 def index(request):
     latest_items_list = Items.objects.order_by('item_id')[:100]
     template = loader.get_template('online_store/index.html')
@@ -30,6 +39,7 @@ def login(request):
     c.update(csrf(request))    
     return render_to_response('login.html', c)
 
+<<<<<<< HEAD
 def login(request):
     """
     Log in view
@@ -80,11 +90,32 @@ def auth_view(request):
     return render_to_response('login.html', {
         'form': form,
     }, context_instance=RequestContext(request))
+=======
+def auth_view(request):
+    username = request.POST.get('username', '')
+    password = request.POST.get('password', '')
+    #user = auth.authenticate(username=username, password=password)
+    found_user = None
+
+    for user in Registered_users.objects.all():
+        if (username == user.username) and (password == user.password):
+            found_user = user
+    
+    if found_user is not None:
+        #auth.login(request, user)
+        return HttpResponseRedirect('/online_store/loggedin')
+    else:
+        return HttpResponseRedirect('/online_store/invalid_login')
+>>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
 
 
 def loggedin(request):
     return render_to_response('online_store/loggedin.html', 
+<<<<<<< HEAD
                               {'full_name': request.user.email})
+=======
+                              {'full_name': request.user.username})
+>>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
 
 def invalid_login(request):
     return render_to_response('invalid_login.html')
@@ -92,12 +123,16 @@ def invalid_login(request):
 def logout(request):
     auth.logout(request)
     return render_to_response('logout.html')
+<<<<<<< HEAD
 #def logout(request):
  #   """
   #  Log out view
    # """
     #django_logout(request)
     #return redirect('logout.html')
+=======
+
+>>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
 
 def register_user(request):
     c = {}
@@ -105,6 +140,7 @@ def register_user(request):
     return render_to_response('register.html', c)
 
 def register_new_user(request):
+<<<<<<< HEAD
     if request.method == 'POST':
         #usernamE = request.POST.get('username', '')
         #password = request.POST.get('password', '')
@@ -127,3 +163,14 @@ def register_new_user(request):
     args['form'] = form
 
     return render_to_response('invalid_login.html', args)
+=======
+    usernamE = request.POST.get('username', '')
+    passworD = request.POST.get('password', '')
+    emaiL = request.POST.get('email', '')
+    phonE = request.POST.get('phone_number', '')
+
+    new_user = Registered_users(username = usernamE, password = passworD, email = emaiL, phone_number = phonE)
+    new_user.save()
+
+    return HttpResponseRedirect('/online_store/invalid_login')
+>>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+<<<<<<< HEAD
 #import sys
 #sys.path.append("/Users/DiyarSailaubekov/Documents/CMPSC431W/iStore/online_store")
 
@@ -32,6 +33,8 @@ import pymysql
 setattr(pymysql, 'escape', mysqldb_escape)
 del pymysql
 
+=======
+>>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -59,6 +62,7 @@ INSTALLED_APPS = (
     'online_store',
 )
 
+<<<<<<< HEAD
 AUTH_USER_MODEL = 'online_store.User'
 
 AUTHENTICATION_BACKENDS = (
@@ -68,6 +72,8 @@ AUTHENTICATION_BACKENDS = (
         'online_store.backends.EmailAuthBackend',
 )
 
+=======
+>>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

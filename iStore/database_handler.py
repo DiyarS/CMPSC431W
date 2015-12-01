@@ -5,9 +5,19 @@ from iStore import *
 os.environ['DJANGO_SETTINGS_MODULE']='iStore.settings'
 django.setup()
 
+<<<<<<< HEAD
 from online_store.models import Items, Category, Fixed_Price, Auction, Belongs_to, User, Sellers, Companies, Individual_sellers, Individual_buyers, Address, Credit_card, Has_address, Has_credit_card, Bids
 
 
+=======
+from online_store.models import Items, Category, Fixed_Price, Auction, Belongs_to, Registered_users, Sellers, Companies, Individual_sellers, Individual_buyers, Address, Credit_card, Has_address, Has_credit_card, Bids
+
+if __name__ == '__main__':
+    populate_categories_database()
+    populate_items_database()
+    populate_registered_users_database()
+    build_categories_hierarchy()
+>>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
 
 
 def populate_categories_database():
@@ -41,7 +51,11 @@ def populate_registered_users_database():
 		users = myfile.readlines()
 		for user in users:
 			user_as_dict = eval(user)
+<<<<<<< HEAD
 			u = User(password = user_as_dict['password'], phone_number = user_as_dict['phone_number'], email = user_as_dict['email'], review = user_as_dict['review'])
+=======
+			u = Registered_users(username = user_as_dict['username'], password = user_as_dict['password'], phone_number = user_as_dict['phone_number'], email = user_as_dict['email'], review = user_as_dict['review'])
+>>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
 			u.save()
 
 	myfile.close()
@@ -121,12 +135,15 @@ def build_categories_hierarchy():
 	#books_hierarchy = Belongs_to(category = books_category.name, item_id = random_item, subcategory = audio_books_category, parent_category = all_items_category)
 
 
+<<<<<<< HEAD
 if __name__ == '__main__':
     populate_categories_database()
     populate_items_database()
     populate_registered_users_database()
     build_categories_hierarchy()
 
+=======
+>>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
 
 
 
