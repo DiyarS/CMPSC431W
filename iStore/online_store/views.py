@@ -30,23 +30,6 @@ def login(request):
     c.update(csrf(request))    
     return render_to_response('login.html', c)
 
-def login(request):
-    """
-    Log in view
-    """
-    if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            user = authenticate(email=request.POST['email'], password=request.POST['password'])
-            if user is not None:
-                if user.is_active:
-                    django_login(request, user)
-                    return redirect('/')
-    else:
-        form = AuthenticationForm()
-    return render_to_response('login.html', {
-        'form': form,
-    }, context_instance=RequestContext(request))
 
 
 def register(request):
