@@ -2,14 +2,36 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
+import django.utils.timezone
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('auth', '0006_require_contenttypes_0002'),
     ]
 
     operations = [
+        migrations.CreateModel(
+            name='User',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('password', models.CharField(max_length=128, verbose_name='password')),
+                ('last_login', models.DateTimeField(null=True, verbose_name='last login', blank=True)),
+                ('is_superuser', models.BooleanField(default=False, help_text='Designates that this user has all permissions without explicitly assigning them.', verbose_name='superuser status')),
+                ('email', models.EmailField(unique=True, max_length=255, verbose_name=b'email address', db_index=True)),
+                ('is_staff', models.BooleanField(default=False, help_text=b'Designates whether the user can log into this admin site.', verbose_name=b'staff status')),
+                ('is_active', models.BooleanField(default=True, help_text=b'Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name=b'active')),
+                ('date_joined', models.DateTimeField(default=django.utils.timezone.now, verbose_name=b'date joined')),
+                ('phone_number', models.CharField(max_length=30)),
+                ('review', models.CharField(default=b'null', max_length=200)),
+            ],
+            options={
+                'verbose_name': 'user',
+                'verbose_name_plural': 'users',
+            },
+        ),
         migrations.CreateModel(
             name='Address',
             fields=[
@@ -20,24 +42,18 @@ class Migration(migrations.Migration):
                 ('index', models.CharField(max_length=20)),
                 ('primary', models.IntegerField(unique=True)),
             ],
-<<<<<<< HEAD
             options={
                 'verbose_name_plural': 'Addresses',
             },
-=======
->>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
         ),
         migrations.CreateModel(
             name='Belongs_to',
             fields=[
                 ('category', models.CharField(max_length=30, unique=True, serialize=False, primary_key=True)),
             ],
-<<<<<<< HEAD
             options={
                 'verbose_name_plural': 'Belongs_to',
             },
-=======
->>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
         ),
         migrations.CreateModel(
             name='Bids',
@@ -45,40 +61,30 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('BID', models.FloatField()),
             ],
-<<<<<<< HEAD
             options={
                 'verbose_name_plural': 'Bids',
             },
-=======
->>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
         ),
         migrations.CreateModel(
             name='Buys',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
             ],
-<<<<<<< HEAD
             options={
                 'verbose_name_plural': 'Buys',
             },
-=======
->>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
         ),
         migrations.CreateModel(
             name='Category',
             fields=[
                 ('name', models.CharField(max_length=60, unique=True, serialize=False, primary_key=True)),
                 ('report', models.TextField(max_length=1000)),
-<<<<<<< HEAD
                 ('parent_cat', models.ForeignKey(related_name='parent_category', to='online_store.Category', null=True)),
                 ('subcategory', models.ForeignKey(to='online_store.Category', null=True)),
             ],
             options={
                 'verbose_name_plural': 'Categories',
             },
-=======
-            ],
->>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
         ),
         migrations.CreateModel(
             name='Credit_card',
@@ -90,12 +96,9 @@ class Migration(migrations.Migration):
                 ('code', models.CharField(max_length=4)),
                 ('primary', models.IntegerField()),
             ],
-<<<<<<< HEAD
             options={
                 'verbose_name_plural': 'Credit_cards',
             },
-=======
->>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
         ),
         migrations.CreateModel(
             name='Delivers_to',
@@ -104,12 +107,9 @@ class Migration(migrations.Migration):
                 ('payment_confirmation', models.BooleanField()),
                 ('address', models.ForeignKey(to='online_store.Address')),
             ],
-<<<<<<< HEAD
             options={
                 'verbose_name_plural': 'Delivers_to',
             },
-=======
->>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
         ),
         migrations.CreateModel(
             name='Has_address',
@@ -117,12 +117,9 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('primary', models.ForeignKey(to='online_store.Address', to_field=b'primary')),
             ],
-<<<<<<< HEAD
             options={
                 'verbose_name_plural': 'Has_addresses',
             },
-=======
->>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
         ),
         migrations.CreateModel(
             name='Has_credit_card',
@@ -130,12 +127,9 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('primary', models.ForeignKey(to='online_store.Credit_card')),
             ],
-<<<<<<< HEAD
             options={
                 'verbose_name_plural': 'Has_credit_cards',
             },
-=======
->>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
         ),
         migrations.CreateModel(
             name='Items',
@@ -145,33 +139,9 @@ class Migration(migrations.Migration):
                 ('location', models.CharField(max_length=60)),
                 ('rating', models.FloatField()),
             ],
-<<<<<<< HEAD
             options={
                 'verbose_name_plural': 'Items',
             },
-=======
->>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
-        ),
-        migrations.CreateModel(
-            name='Registered_users',
-            fields=[
-<<<<<<< HEAD
-                ('username', models.CharField(max_length=10, unique=True, serialize=False, primary_key=True)),
-                ('password', models.CharField(max_length=10)),
-                ('phone_number', models.CharField(max_length=30)),
-                ('email', models.EmailField(unique=True, max_length=30)),
-                ('review', models.CharField(default=b'null', max_length=200)),
-            ],
-            options={
-                'verbose_name_plural': 'Registered_users',
-            },
-=======
-                ('username', models.CharField(max_length=30, unique=True, serialize=False, primary_key=True)),
-                ('password', models.CharField(max_length=30)),
-                ('phone_number', models.CharField(max_length=30)),
-                ('email', models.EmailField(unique=True, max_length=30)),
-            ],
->>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
         ),
         migrations.CreateModel(
             name='Auction',
@@ -181,12 +151,9 @@ class Migration(migrations.Migration):
                 ('reserve_price', models.FloatField()),
                 ('expiration_time', models.DateTimeField()),
             ],
-<<<<<<< HEAD
             options={
                 'verbose_name_plural': 'Auctions',
             },
-=======
->>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
         ),
         migrations.CreateModel(
             name='Fixed_Price',
@@ -194,80 +161,67 @@ class Migration(migrations.Migration):
                 ('item_id', models.ForeignKey(primary_key=True, serialize=False, to='online_store.Items', unique=True)),
                 ('price', models.FloatField()),
             ],
-<<<<<<< HEAD
             options={
                 'verbose_name_plural': 'Fixed_Prices',
             },
-=======
->>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
         ),
         migrations.CreateModel(
             name='Individual_buyers',
             fields=[
-                ('username', models.ForeignKey(primary_key=True, serialize=False, to='online_store.Registered_users')),
+                ('username', models.ForeignKey(primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
                 ('buyer_id', models.CharField(unique=True, max_length=30)),
                 ('dob', models.DateField(verbose_name=b'date_of_birth')),
                 ('gender', models.CharField(max_length=10)),
                 ('annual_income', models.FloatField()),
             ],
-<<<<<<< HEAD
             options={
                 'verbose_name_plural': 'Individual_buyers',
             },
-=======
->>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
         ),
         migrations.CreateModel(
             name='Sellers',
             fields=[
-                ('username', models.ForeignKey(primary_key=True, serialize=False, to='online_store.Registered_users')),
+                ('username', models.ForeignKey(primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
                 ('seller_id', models.CharField(unique=True, max_length=30)),
             ],
-<<<<<<< HEAD
             options={
                 'verbose_name_plural': 'Sellers',
             },
-=======
->>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
         ),
         migrations.AddField(
             model_name='has_credit_card',
             name='username',
-            field=models.ForeignKey(to='online_store.Registered_users'),
+            field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='has_address',
             name='username',
-            field=models.ForeignKey(to='online_store.Registered_users'),
+            field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='buys',
             name='username',
-            field=models.ForeignKey(to='online_store.Registered_users'),
+            field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='bids',
             name='username',
-            field=models.ForeignKey(to='online_store.Registered_users'),
+            field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='belongs_to',
             name='item_id',
-<<<<<<< HEAD
             field=models.ForeignKey(to='online_store.Items'),
-=======
-            field=models.ForeignKey(to='online_store.Items', unique=True),
         ),
         migrations.AddField(
-            model_name='belongs_to',
-            name='parent_category',
-            field=models.ForeignKey(related_name='parent_category', to='online_store.Category'),
+            model_name='user',
+            name='groups',
+            field=models.ManyToManyField(related_query_name='user', related_name='user_set', to='auth.Group', blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', verbose_name='groups'),
         ),
         migrations.AddField(
-            model_name='belongs_to',
-            name='subcategory',
-            field=models.ForeignKey(related_name='subcategory', to='online_store.Category'),
->>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
+            model_name='user',
+            name='user_permissions',
+            field=models.ManyToManyField(related_query_name='user', related_name='user_set', to='auth.Permission', blank=True, help_text='Specific permissions for this user.', verbose_name='user permissions'),
         ),
         migrations.CreateModel(
             name='Companies',
@@ -277,12 +231,9 @@ class Migration(migrations.Migration):
                 ('point_of_contact', models.CharField(max_length=50)),
                 ('revenue', models.FloatField()),
             ],
-<<<<<<< HEAD
             options={
                 'verbose_name_plural': 'Companies',
             },
-=======
->>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
         ),
         migrations.CreateModel(
             name='Individual_sellers',
@@ -293,12 +244,9 @@ class Migration(migrations.Migration):
                 ('annual_income', models.FloatField()),
                 ('seller_id', models.ForeignKey(related_name='individual_seller_id', to='online_store.Sellers', to_field=b'seller_id')),
             ],
-<<<<<<< HEAD
             options={
                 'verbose_name_plural': 'Individual_sellers',
             },
-=======
->>>>>>> 0a473c6cb19413833ef8cd13785ad8724fc7efb6
         ),
         migrations.AddField(
             model_name='delivers_to',
