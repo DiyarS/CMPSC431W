@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="https://getfirebug.com/firebug-lite-debug.js"></script>
 <title>{% block title %} {% endblock %}</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,31 +30,34 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar"> 
 			<ul class="nav navbar-nav">
-				
 				<li><a href="http://52.0.125.193/customers/">Existing Customers</a></li>
 				<li><a href="http://52.0.125.193/new_customer/">New Customer</a></li>
 			</ul>
 
 		</div>
-		<form action="http://localhost:8000/online_store/personal_account/" method = "post">{% csrf_token %}
 
-    <input type="submit" value="Account" style="float: right;">
+	</div>
+</nav>
+
 	
-
-
 <div class="container">
 	<div class="jumbotron">
-{% block content %}
+	<h3 align="center">Your account</h3>
 
-  <h2>Hi {{full_name}} you are now logged in!</h2>
-  <p>Click <a href="/online_store/logout/">here</a> to logout.</p>
+  	<p> <a href="/online_store/my_products/">My products</a></p>
   
-  <p>Click <a href="/profile/">here</a> to edit your profile information</p>
+  	<p><a href="/online_store/my_orders/">My orders</a></p>
 
-{% endblock %}
+</body>
+</html>
 
 
-</div>
-</div>
+
+
+
+
+
+
+
 
 

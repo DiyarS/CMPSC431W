@@ -11,9 +11,10 @@ class Items(models.Model):
 	class Meta:
 		verbose_name_plural = "Items"
 	item_id = models.CharField(max_length=30, unique=True, primary_key=True )
-	description = models.CharField(max_length=500)
+  	item_name = models.CharField(max_length=100, null = True)
+    	description = models.CharField(max_length=500)
 	location = models.CharField(max_length=60)
-	rating = models.FloatField()
+	rating = models.FloatField(null=True)
 
 class  Category(models.Model):
 	class Meta:
@@ -46,8 +47,8 @@ class  Auction(models.Model):
 class  Belongs_to(models.Model):
 	class Meta:
 		verbose_name_plural = "Belongs_to"
-    	category = models.CharField(max_length=30, unique=True, primary_key=True)
-    	item_id = models.ForeignKey(Items) 
+    	category = models.CharField(max_length=30)
+    	item_id = models.ForeignKey(Items , primary_key=True) 
     	#subcategory = models.ForeignKey(Category, related_name = 'subcategory')
     	#parent_category = models.ForeignKey(Category, related_name = 'parent_category')
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,25 +36,53 @@
 			</ul>
 
 		</div>
-		<form action="http://localhost:8000/online_store/personal_account/" method = "post">{% csrf_token %}
 
-    <input type="submit" value="Account" style="float: right;">
+		<form action="http://localhost:8000/online_store/register">
+    <input type="submit" value="Register" style="float: right;">
+</form>
+
+<form action="http://localhost:8000/online_store/login">
+    <input type="submit" value="Sign in" style="float: right;">
+</form>
+
+	</div>
+</nav>
+
 	
-
-
 <div class="container">
 	<div class="jumbotron">
-{% block content %}
+		{% if latest_items_list %}
+    <ul>
+    {% for item in latest_items_list %}
+        
+    {% endfor %}
 
-  <h2>Hi {{full_name}} you are now logged in!</h2>
-  <p>Click <a href="/online_store/logout/">here</a> to logout.</p>
-  
-  <p>Click <a href="/profile/">here</a> to edit your profile information</p>
+    <table style="width:100%">
+  <tr>
+    <td>item_id</td>
+    <td>description</td>		
+    <td>location</td>
+    <td>rating</td>
+  </tr>
+  {% for item in latest_items_list %}
+  <tr>
+    <td>{{ item.item_id}}</td>
+    <td>{{ item.description}}</td>		
+    <td>{{item.location}}</td>
+    <td>{{item.rating}}</td>
+  </tr>
+  {% endfor %}
+</table>
 
-{% endblock %}
 
 
+    </ul>
+{% else %}
+    <p>No items are available.</p>
+{% endif %}
+		 
+	</div>
 </div>
-</div>
 
-
+</body>
+</html>

@@ -35,8 +35,7 @@
 			</ul>
 
 		</div>
-		<form action="http://localhost:8000/online_store/personal_account/" method = "post">{% csrf_token %}
-
+		<form action="http://localhost:8000/online_store/personal_account" method = "post">
     <input type="submit" value="Account" style="float: right;">
 	
 
@@ -45,10 +44,8 @@
 	<div class="jumbotron">
 {% block content %}
 
-  <h2>Hi {{full_name}} you are now logged in!</h2>
-  <p>Click <a href="/online_store/logout/">here</a> to logout.</p>
-  
-  <p>Click <a href="/profile/">here</a> to edit your profile information</p>
+  <h2>Submitted!!!</h2>
+ 
 
 {% endblock %}
 

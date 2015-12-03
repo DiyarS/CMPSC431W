@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{% block title %} {% endblock %}</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% block head %} {% endblock %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<style type="text/css">
+	body {padding-top:70px;}
+	#myNavbar li a {font-size:25px;}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="border-radius:0px;">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>                        
+			</button>
+
+			<a class="navbar-brand" href="http://localhost:8000/online_store/"><img id="logo" alt="Capital One" src="http://consciouslifenews.com/wp-content/uploads/2013/06/the_milky_way_by_symmetrybox-d5ez8c6.png" style="max-height:30px;max-width:300px;"></a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar"> 
+			<ul class="nav navbar-nav">
+				<li><a href="http://52.0.125.193/customers/">Existing Customers</a></li>
+				<li><a href="http://52.0.125.193/new_customer/">New Customer</a></li>
+			</ul>
+
+		</div>
+
+	</div>
+</nav>
+
+	
+<div class="container">
+	<div class="jumbotron">
+	<h3 align="center">New item to sell</h3>
+
+{% if form.errors %}
+    <p class="error">Sorry, that's not a valid username or password</p>
+  {% endif %}
+
+<form action = "submit_item_to_sell/" method = "post">
+{% csrf_token %}
+	<label for="item_name" align="center" >Title</label> <br>
+	<input type="text" name="item_name" align="center" id = "item_name"><br><br>
+
+	<label for="description" align="center">Description</label><br>
+	<input type="text" name="description" align="center" id = "description"><br><br>
+
+	<label for="location" align="center">Location</label><br>
+	<input type="text" name="location" align="center" id = "location"><br><br>
+
+	<label for="category" align="center">Category</label><br>
+	<select id = "category">
+ 		 <option value="Audio books" selected = "selected">Audio books</option>
+ 		 <option value="Books"  selected = "selected">Books</option>
+ 		 <option value="Clothing "&" Shoes">Clothing & Shoes</option>
+ 		 <option value="Clothing">Clothing</option>
+ 		 <option value="Computers">Computers</option>
+ 		 <option value="Dell">Dell</option>
+ 		 <option value="Dell computers">Dell computers</option>
+ 		 <option value="Desktop computers">Desktop computers</option>
+ 		 <option value="Electronics "&" Computers">Electronics & Computers</option>
+ 		 <option value="Kindle books">Kindle books</option>
+ 		 <option value="Laptops">Laptops</option>
+ 		 <option value="Lenovo">Lenovo</option>
+	</select><br><br>
+
+	<label for="price_type" align="center">Price</label><br>
+	<select id = "price_type">
+ 		 <option value="fixed_price" selected = "selected">Fixed price</option>
+ 		 <option value="auction_price">Auction</option>
+	</select><br><br>
+
+	<label for="price" align="center">Price</label><br>
+	<input type="text" name="price" align="center" id = "price"><br><br>
+
+	<input type = "submit" value = "Sell item" />
+	
+</form>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

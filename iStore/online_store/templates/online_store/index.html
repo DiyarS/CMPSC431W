@@ -48,41 +48,6 @@
 	</div>
 </nav>
 
-	
-<div class="container">
-	<div class="jumbotron">
-		{% if latest_items_list %}
-    <ul>
-    {% for item in latest_items_list %}
-        
-    {% endfor %}
-
-    <table style="width:100%">
-  <tr>
-    <td>item_id</td>
-    <td>description</td>		
-    <td>location</td>
-    <td>rating</td>
-  </tr>
-  {% for item in latest_items_list %}
-  <tr>
-    <td>{{ item.item_id}}</td>
-    <td>{{ item.description}}</td>		
-    <td>{{item.location}}</td>
-    <td>{{item.rating}}</td>
-  </tr>
-  {% endfor %}
-</table>
-
-
-
-    </ul>
-{% else %}
-    <p>No items are available.</p>
-{% endif %}
-		 
-	</div>
-</div>
 
 </body>
 </html>
