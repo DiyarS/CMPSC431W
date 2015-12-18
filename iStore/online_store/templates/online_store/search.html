@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <title>{% block title %} {% endblock %}</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,41 +35,28 @@
 			</ul>
 
 		</div>
-
-	</div>
-</nav>
-
 	
+
 <div class="container">
 	<div class="jumbotron">
-	<h3 align="center">Create account</h3>
-<form method = "post">
-{% csrf_token %}
-<form action="register_new_user/" method = "post">
-{% csrf_token %}
-	<label for="email" align="center">Email</label><br>
-	<input type="text" value = "aa@gmail.com" name="email" align="center" id = "email"><br><br>
+{% block content %}
 
-	<label for="password" align="center">Password</label><br>
-	<input type="password" value = "aa" name="password1" align="center" id = "password1"><br><br>
+  <h2> Result: {{ items.count }} items found </h2>
 
-	<label for="password" align="center">Password</label><br>
-	<input type="password" value = "aa" name="password2" align="center" id = "password2"><br><br>
-
-	<input type = "submit" value = "Create account" />
+<form action="http://localhost:8000/online_store/buy/{{item.description}}" method = "get">
+ <h4> {% for item in items %}
+ 
+ 
+ 		<li id = "item"><b>{{ item.description }}</b> {{ item.location }}</li>
+ 		<input type="submit" value="Buy" style="float: right;">
 	
-</form>
+  	  {% endfor %}</h4>
+ </form>
 
-</body>
-</html>
-
-
+{% endblock %}
 
 
-
-
-
-
-
+</div>
+</div>
 
 

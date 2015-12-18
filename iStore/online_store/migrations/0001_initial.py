@@ -47,15 +47,6 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='Belongs_to',
-            fields=[
-                ('category', models.CharField(max_length=30, unique=True, serialize=False, primary_key=True)),
-            ],
-            options={
-                'verbose_name_plural': 'Belongs_to',
-            },
-        ),
-        migrations.CreateModel(
             name='Bids',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -135,9 +126,10 @@ class Migration(migrations.Migration):
             name='Items',
             fields=[
                 ('item_id', models.CharField(max_length=30, unique=True, serialize=False, primary_key=True)),
+                ('item_name', models.CharField(max_length=100, null=True)),
                 ('description', models.CharField(max_length=500)),
                 ('location', models.CharField(max_length=60)),
-                ('rating', models.FloatField()),
+                ('rating', models.FloatField(null=True)),
             ],
             options={
                 'verbose_name_plural': 'Items',
@@ -153,6 +145,16 @@ class Migration(migrations.Migration):
             ],
             options={
                 'verbose_name_plural': 'Auctions',
+            },
+        ),
+        migrations.CreateModel(
+            name='Belongs_to',
+            fields=[
+                ('category', models.CharField(max_length=30)),
+                ('item_id', models.ForeignKey(primary_key=True, serialize=False, to='online_store.Items')),
+            ],
+            options={
+                'verbose_name_plural': 'Belongs_to',
             },
         ),
         migrations.CreateModel(
@@ -181,7 +183,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Sellers',
             fields=[
-                ('username', models.ForeignKey(primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
+                ('username', models.ForeignKey(primary_key=True, default=b'user', serialize=False, to=settings.AUTH_USER_MODEL, unique=True)),
                 ('seller_id', models.CharField(unique=True, max_length=30)),
             ],
             options={
@@ -207,11 +209,6 @@ class Migration(migrations.Migration):
             model_name='bids',
             name='username',
             field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
-        ),
-        migrations.AddField(
-            model_name='belongs_to',
-            name='item_id',
-            field=models.ForeignKey(to='online_store.Items'),
         ),
         migrations.AddField(
             model_name='user',
@@ -242,11 +239,15 @@ class Migration(migrations.Migration):
                 ('dob', models.DateField(verbose_name=b'date_of_birth')),
                 ('gender', models.CharField(max_length=10)),
                 ('annual_income', models.FloatField()),
-                ('seller_id', models.ForeignKey(related_name='individual_seller_id', to='online_store.Sellers', to_field=b'seller_id')),
             ],
             options={
                 'verbose_name_plural': 'Individual_sellers',
             },
+        ),
+        migrations.AddField(
+            model_name='sellers',
+            name='item_id',
+            field=models.ForeignKey(to='online_store.Items', null=True),
         ),
         migrations.AddField(
             model_name='delivers_to',
@@ -267,6 +268,11 @@ class Migration(migrations.Migration):
             model_name='bids',
             name='item_id',
             field=models.ForeignKey(to='online_store.Auction'),
+        ),
+        migrations.AddField(
+            model_name='individual_sellers',
+            name='seller_id',
+            field=models.ForeignKey(related_name='individual_seller_id', to='online_store.Sellers', to_field=b'seller_id'),
         ),
         migrations.AddField(
             model_name='companies',

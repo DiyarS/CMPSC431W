@@ -29,8 +29,8 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar"> 
 			<ul class="nav navbar-nav">
-				<li><a href="http://52.0.125.193/customers/">Existing Customers</a></li>
-				<li><a href="http://52.0.125.193/new_customer/">New Customer</a></li>
+				<li><a href="http://52.0.125.193/customers/">User: {{user_email}}</a></li>
+				
 			</ul>
 
 		</div>
@@ -47,8 +47,12 @@
     <p class="error">Sorry, that's not a valid username or password</p>
   {% endif %}
 
-<form action = "submit_item_to_sell/" method = "post">
-{% csrf_token %}
+<form action = "submit_item_to_sell/" method = "POST">
+
+
+	
+	<input type ="text" value = "{{user_email}}" align="center" id = "user_email" name = "user_email"><br><br>
+
 	<label for="item_name" align="center" >Title</label> <br>
 	<input type="text" name="item_name" align="center" id = "item_name"><br><br>
 
@@ -82,6 +86,8 @@
 
 	<label for="price" align="center">Price</label><br>
 	<input type="text" name="price" align="center" id = "price"><br><br>
+
+
 
 	<input type = "submit" value = "Sell item" />
 	

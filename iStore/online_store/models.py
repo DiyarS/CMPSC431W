@@ -179,8 +179,9 @@ class AuthenticationForm(forms.Form):
 class  Sellers(models.Model):
 	class Meta:
 		verbose_name_plural = "Sellers"
-    	username = models.ForeignKey(User, primary_key=True)
+    	username = models.ForeignKey(User, primary_key=True, unique = True, default = "user")
     	seller_id = models.CharField(max_length=30, unique=True)
+        item_id = models.ForeignKey(Items, null = True)
 
 
 class  Companies(models.Model):

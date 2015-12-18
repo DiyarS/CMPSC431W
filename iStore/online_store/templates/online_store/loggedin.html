@@ -30,12 +30,20 @@
 		<div class="collapse navbar-collapse" id="myNavbar"> 
 			<ul class="nav navbar-nav">
 				
-				<li><a href="http://52.0.125.193/customers/">Existing Customers</a></li>
-				<li><a href="http://52.0.125.193/new_customer/">New Customer</a></li>
+				<li><a href="http://localhost:8000/online_store/add_item_for_sell/{{user_email|truncatechars:'@'}}/">Sell item</a></li>
+				<li><a href="http://52.0.125.193/new_customer/">Buy item</a></li>
+				{% if user_email%}
+				<li><a href = "http://localhost:8000/online_store/personal_account/{{user_email|truncatechars:'@'}}/">User {{ user_email|truncatechars:'@' }}</a></li>
+				{% else %}
+   				<li>No polls are available.</li>
+{% endif %}
+
 			</ul>
 
 		</div>
-		<form action="http://localhost:8000/online_store/personal_account/" method = "post">{% csrf_token %}
+
+
+		<form action="http://localhost:8000/online_store/personal_account/{{user_email}}/">{{user_email|truncatechars:'@'}}
 
     <input type="submit" value="Account" style="float: right;">
 	
@@ -45,7 +53,7 @@
 	<div class="jumbotron">
 {% block content %}
 
-  <h2>Hi {{full_name}} you are now logged in!</h2>
+  <h2>Hi {{user_email}} you are now logged in!</h2>
   <p>Click <a href="/online_store/logout/">here</a> to logout.</p>
   
   <p>Click <a href="/profile/">here</a> to edit your profile information</p>
